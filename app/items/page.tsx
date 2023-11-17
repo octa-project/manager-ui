@@ -9,6 +9,18 @@ import { ColumnsType } from 'antd/es/table';
 const ItemList = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
+    var isPriceModalOpen = false;
+    // const [ isPriceModalOpen, setPriceModalOpen ] = useState(false);
+
+    const openPriceModal = () => {
+      isPriceModalOpen = true;
+//      setPriceModalOpen(true);
+    };
+
+    const closePriceModal = () => {
+      isPriceModalOpen = false;
+      // setPriceModalOpen(false);
+    };
 
     const openModal = () => {
         setModalOpen(true);
@@ -53,6 +65,12 @@ const ItemList = () => {
         title: 'Худалдах үнэ',
         dataIndex: 'sellprice',
         key: 'sellprice'
+      },
+      {
+        title: 'Үйлдэл',
+        dataIndex: 'operation',
+        key: 'operation',
+        fixed: 'right'
       }
     ]
   
@@ -160,7 +178,20 @@ const ItemList = () => {
                         </div>
                     </div>
                     <div className='mt-3'>
-                        <Table dataSource={dataSource} columns={columns}/>
+                        <Table columns={columns} dataSource={dataSource}
+                          onRow={(record, rowIndex) => {
+                            return {
+                              onMouseDown: event => {
+                                openPriceModal;
+                                console.log(record);
+                              }
+                              // onClick: event => {
+                              //   openPriceModal
+                              // }
+                            }
+                          }}
+                        >
+                        </Table>
                     </div>
 
                 </div>
@@ -176,6 +207,20 @@ const ItemList = () => {
                         </button>
                     </div>
                 </Modal>
+
+                <Modal isOpen={isPriceModalOpen} onClose={closePriceModal}>
+                    <div className="p-6">
+                        <h2 className="text-2xl text-black font-semibold mb-4">Modal Content</h2>
+                        <p className="text-black">This is the content of the modal. You can add any components or text here.</p>
+                        <button
+                            onClick={closePriceModal}
+                            className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                        >
+                            Close Modal
+                        </button>
+                    </div>
+                </Modal>
+
             </div>
         </main>
         </body>

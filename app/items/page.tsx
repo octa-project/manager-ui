@@ -350,8 +350,8 @@ const ItemList = () => {
                                     <li><a>Экселрүү буулгах</a></li>
                                 </ul>
                             </div>
-                            <button className="btn btn-active btn-info ml-3">Шинээр нэмэх</button>
-                            <button className="btn btn-active btn-success ml-3" onClick={setAllItem}>Хадгалах</button>
+                            <button className="btn btn-info text-white ml-3">Шинээр нэмэх</button>
+                            <button className="btn btn-success text-white ml-3" onClick={setAllItem}>Хадгалах</button>
                         </div>
                     </div>
                     <div className='mt-3 h-40'>

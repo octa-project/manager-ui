@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import SideBar from '../components/SideBar'
 import {Space, Table, Tag} from 'antd';
 import Modal from "@/app/components/Modal";
+import { ColumnsType } from 'antd/es/table';
 
 const ItemList = () => {
 
@@ -17,37 +18,97 @@ const ItemList = () => {
         setModalOpen(false);
     };
 
+    interface ItemInfo {
+      key: React.ReactNode;
+      name: string;
+      barcode: string;
+      group: string;
+      branch: string;
+      sellprice: string;
+      childern?: ItemInfo[];
+    }
+  
+    const columns: ColumnsType<ItemInfo> = [
+      {
+        title: 'Барааны нэр',
+        dataIndex: 'name',
+        key: 'name'
+      },
+      {
+        title: 'Баар код',
+        dataIndex: 'barcode',
+        key: 'barcode'
+      },
+      {
+        title: 'Барааны ангилал',
+        dataIndex: 'group',
+        key: 'group'
+      },
+      {
+        title: 'Салбар',
+        dataIndex: 'branch',
+        key: 'branch'
+      },
+      {
+        title: 'Худалдах үнэ',
+        dataIndex: 'sellprice',
+        key: 'sellprice'
+      }
+    ]
+  
     const dataSource = [
-        {
-            key: '1',
-            name: 'Mike',
-            age: 32,
-            address: '10 Downing Street',
-        },
-        {
-            key: '2',
-            name: 'John',
-            age: 42,
-            address: '10 Downing Street',
-        },
-    ];
-
-    const columns = [
-        {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-        },
-        {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
-        },
-        {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
+      {
+        key: 1,
+        name: 'Coca cola',
+        barcode: '2 баар код',
+        group: 'Ус ундаа',
+        branch: 'Бүх салбар',
+        sellprice: '1500-5100',
+        children: [
+          {
+            key: 11,
+            name: 'Coca cola 500ml',
+            barcode: '151515561561561511',
+            group: '',
+            branch: '',
+            sellprice: '1900'
+          },
+          {
+            key: 12,
+            name: 'Coca cola 300ml',
+            barcode: '151515561561561512',
+            group: '',
+            branch: '',
+            sellprice: '1500'
+          }
+        ]
+      },
+      {
+        key: 2,
+        name: 'Bonaqua',
+        barcode: '2 баар код',
+        group: 'Ус ундаа',
+        branch: 'Бүх салбар',
+        sellprice: '1500-5100',
+        children: [
+          {
+            key: 21,
+            name: 'Bonaqua 500ml',
+            barcode: '151515561561561511',
+            group: '',
+            branch: '',
+            sellprice: '1900'
+          },
+          {
+            key: 22,
+            name: 'Bonaqua 300ml',
+            barcode: '151515561561561512',
+            group: '',
+            branch: '',
+            sellprice: '1500'
+          }
+        ]
+      }
     ];
 
     return (

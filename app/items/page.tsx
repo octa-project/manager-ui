@@ -49,38 +49,38 @@ const ItemList = () => {
             <div className='h-full w-[calc(100%-15rem)] p-4'>
 
               <div className='flex'>
-                <details className="dropdown">
-                  <summary className="m-1 btn">
+                <div className="dropdown">
+                  <label tabIndex={0} className="btn m-1">
                     Барааны ангилал
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" /></svg>
-                  </summary>
-                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                  </label>
+                  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a>Item 1</a></li>
                     <li><a>Item 2</a></li>
                   </ul>
-                </details>
+                </div>
 
-                <details className="dropdown">
-                  <summary className="m-1 btn">
+                <div className="dropdown">
+                  <label tabIndex={0} className="btn m-1">
                     Салбарууд
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" /></svg>
-                  </summary>
-                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                  </label>
+                  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a>Item 1</a></li>
                     <li><a>Item 2</a></li>
                   </ul>
-                </details>
+                </div>
 
-                <details className="dropdown">
-                  <summary className="m-1 btn">
+                <div className="dropdown">
+                  <label tabIndex={0} className="btn m-1">
                     Бүх бараагаар
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" /></svg>
-                  </summary>
-                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                  </label>
+                  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a>Item 1</a></li>
                     <li><a>Item 2</a></li>
                   </ul>
-                </details>
+                </div>
               </div>
               <div className='mt-3'>
                 <Table dataSource={dataSource} columns={columns} />

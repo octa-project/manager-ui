@@ -9,17 +9,14 @@ import { ColumnsType } from 'antd/es/table';
 const ItemList = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
-    var isPriceModalOpen = false;
-    // const [ isPriceModalOpen, setPriceModalOpen ] = useState(false);
+    const [ isPriceModalOpen, setPriceModalOpen ] = useState(false);
 
     const openPriceModal = () => {
-      isPriceModalOpen = true;
-//      setPriceModalOpen(true);
+     setPriceModalOpen(true);
     };
 
     const closePriceModal = () => {
-      isPriceModalOpen = false;
-      // setPriceModalOpen(false);
+      setPriceModalOpen(false);
     };
 
     const openModal = () => {
@@ -175,21 +172,17 @@ const ItemList = () => {
                                   <li><a>Экселрүү буулгах</a></li>
                               </ul>
                           </div>
-                          <button className="btn btn-active btn-info ml-3">Шинээр нэмэх</button>
-                          <button className="btn btn-active btn-success ml-3">Хадгалах</button>
+                          <button className="btn btn-active btn-info ml-3 mt-1" onClick={openPriceModal}>Шинээр нэмэх</button>
+                          <button className="btn btn-active btn-success ml-3 mt-1">Хадгалах</button>
                         </div>
                     </div>
                     <div className='mt-3'>
-                        <Table columns={columns} dataSource={dataSource}
+                        <Table columns={columns} dataSource={dataSource} bordered
                           onRow={(record, rowIndex) => {
                             return {
                               onMouseDown: event => {
-                                openPriceModal;
                                 console.log(record);
                               }
-                              // onClick: event => {
-                              //   openPriceModal
-                              // }
                             }
                           }}
                         >

@@ -333,27 +333,29 @@ const ItemList = () => {
                                        className="input input-bordered w-full max-w-xs"/>
                             </div>
                         </div>
-                        <div className='dropdown'>
-                            <label tabIndex={0} className="btn m-1">
-                                Хийх үйлдлүүд
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-                                     viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M6 9l6 6 6-6"/>
-                                </svg>
-                            </label>
-                            <ul tabIndex={0}
-                                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a onClick={openModal}>Өгөгдлийн сангаас татах</a></li>
-                                <li><a>Экселээс татах</a></li>
-                                <li><a>Экселрүү буулгах</a></li>
-                            </ul>
+                        <div>
+                            <div className='dropdown'>
+                                <label tabIndex={0} className="btn m-1">
+                                    Хийх үйлдлүүд
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 9l6 6 6-6"/>
+                                    </svg>
+                                </label>
+                                <ul tabIndex={0}
+                                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li><a onClick={openModal}>Өгөгдлийн сангаас татах</a></li>
+                                    <li><a>Экселээс татах</a></li>
+                                    <li><a>Экселрүү буулгах</a></li>
+                                </ul>
+                            </div>
                             <button className="btn btn-active btn-info ml-3">Шинээр нэмэх</button>
                             <button className="btn btn-active btn-success ml-3" onClick={setAllItem}>Хадгалах</button>
                         </div>
                     </div>
-                    <div className='mt-3'>
-                        <Table columns={columns} dataSource={dataSourceData}
+                    <div className='mt-3 h-40'>
+                        <Table columns={columns} dataSource={dataSourceData} pagination={{ pageSize: 50 }} scroll={{ y: 650 }}
                                onRow={(record, rowIndex) => {
                                    return {
                                        onMouseDown: event => {

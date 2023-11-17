@@ -48,37 +48,40 @@ const ItemList = () => {
             <SideBar></SideBar>
             <div className='h-full w-[calc(100%-15rem)] p-4'>
 
-              <div className='flex'>
-                <select className="select m-1 btn">
-                  <option disabled selected>Барааны ангилал</option>
-                  <option>Homer</option>
-                  <option>Marge</option>
-                  <option>Bart</option>
-                  <option>Lisa</option>
-                  <option>Maggie</option>
-                </select>
+              <div className='flex justify-between'>
+                <div className='flex'>
+                  <select className="select select-bordered max-w-xs">
+                    <option disabled selected>Барааны ангилал</option>
+                    <option>Han Solo</option>
+                    <option>Greedo</option>
+                  </select>
 
-                <details className="dropdown">
-                  <summary className="m-1 btn">
-                    Салбарууд
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" /></svg>
-                  </summary>
-                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
-                  </ul>
-                </details>
+                  <select className="select select-bordered max-w-xs ml-3">
+                    <option disabled selected>Салбарууд</option>
+                    <option>Han Solo</option>
+                    <option>Greedo</option>
+                  </select>
 
-                <details className="dropdown">
-                  <summary className="m-1 btn">
-                    Бүх бараагаар
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" /></svg>
-                  </summary>
-                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
-                  </ul>
-                </details>
+                  <select className="select select-bordered max-w-xs ml-3">
+                    <option disabled selected>Бүх бараагаар</option>
+                    <option>Han Solo</option>
+                    <option>Greedo</option>
+                  </select>
+
+                  <div className='ml-3'>
+                    <input type="text" placeholder="Хайлт хийх" className="input input-bordered w-full max-w-xs" />
+                  </div>
+                </div>
+                <div className='flex'>
+                  <select className="select select-bordered max-w-xs ml-3">
+                    <option disabled selected>Хийх үйлдлүүд</option>
+                    <option>Өгөгдлийн сангаас татах</option>
+                    <option>Экселээс татах</option>
+                    <option>Экселрүү буулгах</option>
+                  </select>
+                  <button className="btn btn-active btn-info ml-3">Шинээр нэмэх</button>
+                  <button className="btn btn-active btn-success ml-3">Хадгалах</button>
+                </div>
               </div>
               <div className='mt-3'>
                 <Table dataSource={dataSource} columns={columns} />

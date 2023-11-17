@@ -49,16 +49,14 @@ const ItemList = () => {
             <div className='h-full w-[calc(100%-15rem)] p-4'>
 
               <div className='flex'>
-                <details className="dropdown">
-                  <summary className="m-1 btn">
-                    Барааны ангилал
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" /></svg>
-                  </summary>
-                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
-                  </ul>
-                </details>
+                <select className="select m-1 btn">
+                  <option disabled selected>Барааны ангилал</option>
+                  <option>Homer</option>
+                  <option>Marge</option>
+                  <option>Bart</option>
+                  <option>Lisa</option>
+                  <option>Maggie</option>
+                </select>
 
                 <details className="dropdown">
                   <summary className="m-1 btn">

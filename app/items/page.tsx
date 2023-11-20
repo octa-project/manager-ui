@@ -2,11 +2,22 @@
 import React, {useEffect, useState} from 'react'
 import Header from '../components/Header'
 import SideBar from '../components/SideBar'
-import {Space, Table, Tag} from 'antd';
+import {Space, Table, Tag, notification, Button } from 'antd';
 import Modal from "@/app/components/Modal";
 import {ColumnsType} from 'antd/es/table';
 
+type NotificationType = 'success' | 'info' | 'warning' | 'error';
+
 const ItemList = () => {
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (type: NotificationType, message: string) => {
+        api[type]({
+          message: 'Амжилттай',
+          description: message,
+        });
+      };
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [isPriceModalOpen, setPriceModalOpen] = useState(false);
@@ -188,10 +199,11 @@ const ItemList = () => {
             
             if (response.ok) {
                 const result = await response.json();
-                
+                openNotificationWithIcon('success', 'Амжилттай хадгалалаа')
                 console.log('Save successful:', result);
             } else {
                 console.error('Error saving items:', response.status, response.statusText);
+                openNotificationWithIcon('error', response.statusText)
             }
         } catch (error) {
             console.error('Error saving items:', error);
@@ -351,6 +363,7 @@ const ItemList = () => {
                                 </ul>
                             </div>
                             <button className="btn btn-info text-white ml-3">Шинээр нэмэх</button>
+                            {contextHolder}
                             <button className="btn btn-success text-white ml-3" onClick={setAllItem}>Хадгалах</button>
                         </div>
                     </div>

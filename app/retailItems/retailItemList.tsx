@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, TextField } from "@mui/material";
 import Item from 'antd/es/list/Item';
+import {Space, Table, Tag, notification } from 'antd';
+
+type NotificationType = 'success' | 'info' | 'warning' | 'error';
 
 interface Item {
   id: number;
@@ -18,6 +21,17 @@ interface Result {
 }
 
 function retailItemList() {
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotificationWithIcon = (type: NotificationType, message: string) => {
+    api[type]({
+      message: 'Амжилттай',
+      description: message,
+    });
+  };
+
+
   const [items, setItems] = useState<Item[]>([]);
   const [openModal, setOpenModal] = useState(false);
   const [value, setValue] = useState('1');
@@ -99,12 +113,14 @@ function retailItemList() {
       if (response.ok) {
         const result = await response.json();
         if (result.code == "200") {
-          alert("амжилттай өөрчлөгдлөө");
+          openNotificationWithIcon('success', 'Амжилттай хадгалалаа')
+          // alert("амжилттай өөрчлөгдлөө");
           getAllItems()
           handleCloseModal()
         }
         console.log('Update item result:', result);
       } else {
+        openNotificationWithIcon('error', response.statusText)
         console.error('Error updating item:', response.status, response.statusText);
       }
     } catch (error) {
@@ -130,6 +146,7 @@ function retailItemList() {
           {items.map((item) => (
             <tr key={item.id}>
               <td className="py-2 px-4 border-b">
+              {contextHolder}
                 <button onClick={() => handleOpenModal(item)} className="bg-blue-500 text-white px-2 py-1 rounded">Засах</button>
               </td>
               <td className="py-2 px-4 border-b">{item.id}</td>

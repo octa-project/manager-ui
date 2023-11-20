@@ -363,20 +363,21 @@ const ItemList = () => {
                         <div className='flex'>
                             <select className="select select-bordered max-w-xs">
                                 <option disabled selected>Барааны ангилал</option>
-                                <option>Han Solo</option>
-                                <option>Greedo</option>
+                                <option>Ус, ундаа</option>
+                                <option>Архи, пиво</option>
+                                <option>Чихэр, амттан</option>
                             </select>
 
                             <select className="select select-bordered max-w-xs ml-3">
                                 <option disabled selected>Салбарууд</option>
-                                <option>Han Solo</option>
-                                <option>Greedo</option>
+                                <option>Салбар 1</option>
+                                <option>Салбар 2</option>
                             </select>
 
                             <select className="select select-bordered max-w-xs ml-3">
-                                <option disabled selected>Бүх бараагаар</option>
-                                <option>Han Solo</option>
-                                <option>Greedo</option>
+                                <option selected>Бүх бараагаар</option>
+                                <option>Нөөц багассан бараагаар</option>
+                                <option>Үлдэгдэлгүй болсон бараагаар</option>
                             </select>
 
                             <div className='ml-3'>

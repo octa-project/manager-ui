@@ -86,6 +86,26 @@ const SideBar = () => {
                             <span className='text-l font-bold'>Баримтын тохиргоо</span>
                         </Link>
                     </li>
+
+                    <li className='rounded hover:bg-slate-100'>
+                        <Link href='/sales' className='flex items-center p-2 space-x-3 rounded-md'>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}>
+                                <circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/>
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"
+                                />
+                            </svg>
+                            <span className='text-l font-bold'>Борлуулалт</span>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </div>

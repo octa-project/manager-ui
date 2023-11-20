@@ -36,15 +36,17 @@ const ItemList = () => {
         setModalOpen(true);
     };
 
-    const closeModal = () => {
+    const closeModal = async () => {
         setModalOpen(false);
+        await getAllItem();
+        setConvertedList(sda);
     };
 
     useEffect(() => {
         getAllItemGroup();
-        getAllItem();
-        setConvertedList(sda);
-
+        //getAllItem();
+        // setConvertedList(sda);
+    //
     }, []); // The empty dependency array [] means this effect will only run once, similar to componentDidMount
 
 
@@ -222,6 +224,12 @@ const ItemList = () => {
     }
 
     const columns: ColumnsType<ItemInfo> = [
+
+        {
+            title: 'Барааны дотоод код',
+            dataIndex: 'internalCode',
+            key: 'internalCode'
+        },
         {
             title: 'Барааны нэр',
             dataIndex: 'name',
@@ -244,8 +252,8 @@ const ItemList = () => {
         },
         {
             title: 'Худалдах үнэ',
-            dataIndex: 'itemCode',
-            key: 'itemCode'
+            dataIndex: 'sellPrice',
+            key: 'sellPrice'
         }
     ]
 

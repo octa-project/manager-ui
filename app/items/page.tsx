@@ -276,6 +276,11 @@ const ItemList = () => {
             key: 'internalCode'
         },
         {
+            title: 'Бүлгийн нэр',
+            dataIndex: 'groupName',
+            key: 'groupName'
+        },
+        {
             title: 'Барааны нэр',
             dataIndex: 'name',
             key: 'name'

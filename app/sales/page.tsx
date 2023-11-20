@@ -3,12 +3,14 @@ import React, {useEffect, useState} from 'react'
 import Header from '../components/Header'
 import SideBar from '../components/SideBar'
 import Modal from "@/app/components/Modal";
+import { green } from '@mui/material/colors';
 
 interface SaleHeaders {
     id: number;
     date: string;
     total_items: string;
     total_amount: string;
+    is_paid: number;
   }
   
   interface Result {
@@ -104,6 +106,7 @@ const Sales = () => {
                         <th className="py-2 px-4 border-b text-left">Огноо</th>
                         <th className="py-2 px-4 border-b text-left">Нийт бараа</th>
                         <th className="py-2 px-4 border-b text-left">Нийт дүн</th>
+                        <th className="py-2 px-4 border-b text-left">Төлөгдсөн</th>
                         <th className="py-2 px-4 border-b text-left">Үйлдэл</th>
                     </tr>
                 </thead>
@@ -114,7 +117,9 @@ const Sales = () => {
                             <td className="py-2 px-4 border-b">{item.date}</td>
                             <td className="py-2 px-4 border-b">{item.total_items}</td>
                             <td className="py-2 px-4 border-b">{item.total_amount}</td>
-                            <td className="py-2 px-4 border-b">
+                            <td className={`py-2 px-4 border-b ${item.is_paid === 1 ? 'text-[#008000]' : 'text-[#FF0000]'}`}>
+  {item.is_paid === 1 ? 'Төлсөн' : 'Төлөөгүй'}
+</td>                            <td className="py-2 px-4 border-b">
                                 <button onClick={() => handleOpenModal(item)} className="bg-blue-400 text-white px-2 py-1 rounded">Харах</button>
                             </td>
                         </tr>

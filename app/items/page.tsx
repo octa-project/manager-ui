@@ -457,20 +457,20 @@ const ItemList = () => {
                 <Modal isOpen={newItemModalOpen} onClose={closeNewItemModal}>
                     <div className="p-6 min-w-full">
                         <h2 className="text-2xl text-black font-semibold">Шинэ бараа нэмэх</h2>
-                        <div className='w-full max-w-xs'>
+                        <div className='w-full'>
                             <div className='mt-3'>Баар код:</div>
-                            <input type="text" placeholder="Баар код" value={barcode} onChange={e => setBarcode(e.currentTarget.value)} className="mt-1 input input-bordered w-full max-w-xs" />
+                            <input type="text" placeholder="Баар код" value={barcode} onChange={e => setBarcode(e.currentTarget.value)} className="mt-1 input input-bordered w-full" />
 
                             <div className='mt-3'>Барааны нэр:</div>
-                            <input type="text" placeholder="Барааны нэр" value={name} onChange={e => setName(e.currentTarget.value)} className="mt-1 input input-bordered w-full max-w-xs" />
+                            <input type="text" placeholder="Барааны нэр" value={name} onChange={e => setName(e.currentTarget.value)} className="mt-1 input input-bordered w-full" />
 
                             <div className='mt-3'>Барааны код:</div>
-                            <input type="text" placeholder="Барааны код" value={code} onChange={e => setCode(e.currentTarget.value)} className="mt-1 input input-bordered w-full max-w-xs" />
+                            <input type="text" placeholder="Барааны код" value={code} onChange={e => setCode(e.currentTarget.value)} className="mt-1 input input-bordered w-full" />
 
                             <div className='mt-3'>Худалдах үнэ:</div>
-                            <input type="number" placeholder="Худалдах үнэ" value={sellPrice} onChange={e => setSellPrice(e.currentTarget.value)} className="mt-1 input input-bordered w-full max-w-xs" />
+                            <input type="number" placeholder="Худалдах үнэ" value={sellPrice} onChange={e => setSellPrice(e.currentTarget.value)} className="mt-1 input input-bordered w-full" />
                         </div>
-                        <div className='flex mt-10'>
+                        <div className='flex mt-10 justify-end'>
                             <button
                                 onClick={saveNewItem}
                                 className="bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
@@ -478,7 +478,7 @@ const ItemList = () => {
                             </button>
                             <button
                                 onClick={closeNewItemModal}
-                                className="ml-5 bg-black hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full">
+                                className="ml-2 bg-black hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full">
                                 Болих
                             </button>
                         </div>

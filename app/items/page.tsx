@@ -19,16 +19,26 @@ const ItemList = () => {
         });
       };
 
+
+    const [barcode, setBarcode] = useState('');
+    const [code, setCode] = useState('');
+    const [name, setName] = useState('');
+    const [sellPrice, setSellPrice] = useState('');
+
     const [isModalOpen, setModalOpen] = useState(false);
-    const [isPriceModalOpen, setPriceModalOpen] = useState(false);
+    const [newItemModalOpen, setNewItemModalOpen] = useState(false);
     const [convertedList, setConvertedList] = useState<SkuToPosData[]>([]);
     
-    const openPriceModal = () => {
-        setPriceModalOpen(true);
+    const openNewItemModal = () => {
+        setBarcode('')
+        setCode('')
+        setName('')
+        setSellPrice('')
+        setNewItemModalOpen(true);
     };
 
-    const closePriceModal = () => {
-        setPriceModalOpen(false);
+    const closeNewItemModal = () => {
+        setNewItemModalOpen(false);
     };
     const [items, setItems] = useState<Item[]>([]);
     const [dataSourceData, setDataColumns] = useState<DataSourceData[]>([]);
@@ -167,6 +177,41 @@ const ItemList = () => {
             console.error('Error fetching items:', error);
         }
     };
+
+    const saveNewItem = async () => {
+        try {
+            const body = {
+                barcode: barcode,
+                name: name,
+                code: code,
+                sellPrice: sellPrice
+            }
+
+            const response = await fetch('http://43.231.114.215:8400/item/save-item', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                if (result.code == "200") {
+                  openNotificationWithIcon('success', 'Амжилттай хадгалалаа')
+                  closeNewItemModal()
+                }
+                console.log('Update item result:', result);
+              } else {
+                openNotificationWithIcon('error', response.statusText)
+                console.error('Error updating item:', response.status, response.statusText);
+              }
+        }
+        catch (error) {
+            console.error('Error updating item:', error);
+        }
+
+    }
 
     const setAllItem = async () => {
         const convertedData = sda();
@@ -326,20 +371,21 @@ const ItemList = () => {
                         <div className='flex'>
                             <select className="select select-bordered max-w-xs">
                                 <option disabled selected>Барааны ангилал</option>
-                                <option>Han Solo</option>
-                                <option>Greedo</option>
+                                <option>Ус, ундаа</option>
+                                <option>Архи, пиво</option>
+                                <option>Чихэр, амттан</option>
                             </select>
 
                             <select className="select select-bordered max-w-xs ml-3">
                                 <option disabled selected>Салбарууд</option>
-                                <option>Han Solo</option>
-                                <option>Greedo</option>
+                                <option>Салбар 1</option>
+                                <option>Салбар 2</option>
                             </select>
 
                             <select className="select select-bordered max-w-xs ml-3">
-                                <option disabled selected>Бүх бараагаар</option>
-                                <option>Han Solo</option>
-                                <option>Greedo</option>
+                                <option selected>Бүх бараагаар</option>
+                                <option>Нөөц багассан бараагаар</option>
+                                <option>Үлдэгдэлгүй болсон бараагаар</option>
                             </select>
 
                             <div className='ml-3'>
@@ -364,7 +410,8 @@ const ItemList = () => {
                                     <li><a>Экселрүү буулгах</a></li>
                                 </ul>
                             </div>
-                            <button className="btn btn-info text-white ml-3">Шинээр нэмэх</button>
+                            {contextHolder}
+                            <button className="btn btn-info text-white ml-3" onClick={openNewItemModal}>Шинээр нэмэх</button>
                             {contextHolder}
                             <button className="btn btn-success text-white ml-3" onClick={setAllItem}>Хадгалах</button>
                         </div>
@@ -416,17 +463,34 @@ const ItemList = () => {
                     </div>
                 </Modal>
 
-                <Modal isOpen={isPriceModalOpen} onClose={closePriceModal}>
-                    <div className="p-6">
-                        <h2 className="text-2xl text-black font-semibold mb-4">Modal Content</h2>
-                        <p className="text-black">This is the content of the modal. You can add any components or text
-                            here.</p>
-                        <button
-                            onClick={closePriceModal}
-                            className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-                        >
-                            Close Modal
-                        </button>
+                <Modal isOpen={newItemModalOpen} onClose={closeNewItemModal}>
+                    <div className="p-6 min-w-full">
+                        <h2 className="text-2xl text-black font-semibold">Шинэ бараа нэмэх</h2>
+                        <div className='w-full'>
+                            <div className='mt-3'>Баар код:</div>
+                            <input type="text" placeholder="Баар код" value={barcode} onChange={e => setBarcode(e.currentTarget.value)} className="mt-1 input input-bordered w-full" />
+
+                            <div className='mt-3'>Барааны нэр:</div>
+                            <input type="text" placeholder="Барааны нэр" value={name} onChange={e => setName(e.currentTarget.value)} className="mt-1 input input-bordered w-full" />
+
+                            <div className='mt-3'>Барааны код:</div>
+                            <input type="text" placeholder="Барааны код" value={code} onChange={e => setCode(e.currentTarget.value)} className="mt-1 input input-bordered w-full" />
+
+                            <div className='mt-3'>Худалдах үнэ:</div>
+                            <input type="number" placeholder="Худалдах үнэ" value={sellPrice} onChange={e => setSellPrice(e.currentTarget.value)} className="mt-1 input input-bordered w-full" />
+                        </div>
+                        <div className='flex mt-10 justify-end'>
+                            <button
+                                onClick={saveNewItem}
+                                className="bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
+                                Нэмэх
+                            </button>
+                            <button
+                                onClick={closeNewItemModal}
+                                className="ml-2 bg-black hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full">
+                                Болих
+                            </button>
+                        </div>
                     </div>
                 </Modal>
 

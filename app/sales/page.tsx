@@ -54,9 +54,9 @@ const Sales = () => {
     };
 
     const handleOpenModal = (item: SaleHeaders) => {
-        setModalOpen(true);
         setSaleId(item.id);
         getSaleItem();
+        setModalOpen(true);
     };
 
     const getAllItems = async () => {

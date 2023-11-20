@@ -246,12 +246,6 @@ const ItemList = () => {
             title: 'Худалдах үнэ',
             dataIndex: 'itemCode',
             key: 'itemCode'
-        },
-        {
-            title: 'Үйлдэл',
-            dataIndex: 'operation',
-            key: 'operation',
-            fixed: 'right'
         }
     ]
 

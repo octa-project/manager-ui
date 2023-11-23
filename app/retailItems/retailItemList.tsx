@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Button, Modal, TextField } from "@mui/material";
 import Item from 'antd/es/list/Item';
 import {Space, Table, Tag, notification } from 'antd';
+import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
+import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
+import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
 
@@ -42,7 +45,33 @@ function retailItemList() {
   const [name, setName] = useState('');
   const [sellPrice, setSellPrice] = useState('');
 
+  const containerStyle = useMemo(() => ({ width: '100%', height: '90%' }), []);
+  const gridStyle = useMemo(() => ({ height: '100%', width: '100%' }), []);
 
+  // <td className="py-2 px-4 border-b">{item.id}</td>
+  // <td className="py-2 px-4 border-b">{item.name}</td>
+  // <td className="py-2 px-4 border-b">{item.barcode}</td>
+  // <td className="py-2 px-4 border-b">{item.code}</td>
+  // <td className="py-2 px-4 border-b">{item.sellPrice}</td>
+
+  const [columnDefs, setColumnDefs] = useState([
+    { field: 'id', headerName: 'Код' },
+    { field: 'name', headerName: 'Барааны нэр', filter: "agTextColumnFilter" },
+    { field: 'barcode', headerName: 'Баркод', filter: "agTextColumnFilter" },
+    { field: 'code', headerName: 'Дотоод код', filter: "agTextColumnFilter" },
+    { field: 'sellPrice', headerName: 'Худалдах үнэ' }
+  ]);
+
+  const defaultColDef = useMemo(() => {
+    return {
+      flex: 1,
+      minWidth: 100,
+      cellDataType: false,
+      resizable: true,
+      sortable: true,
+      filter: true,
+    };
+  }, []);
 
   const handleButtonClick = (newValue: React.SetStateAction<string>) => {
     setValue(newValue);
@@ -131,7 +160,28 @@ function retailItemList() {
   return (
     <div className='flex-auto p-5'>
       <button onClick={getAllItems} className="bg-blue-500 text-white px-2 py-1 mb-3 rounded">Бараанууд дуудах</button>
-      <table className="min-w-full bg-white border border-gray-300">
+
+      <div style={containerStyle}>
+
+            <div className="ag-theme-alpine" style={gridStyle}>
+
+                <AgGridReact
+                    rowData={items} // Row Data for Rows
+                    columnDefs={columnDefs} // Column Defs for Columns
+                    animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+                    rowSelection='multiple' // Options - allows click selection of rows
+                    defaultColDef={defaultColDef}
+                    enableRangeSelection={true}
+                    enableFillHandle={true}
+                    ensureDomOrder={true}
+                    sideBar={true}
+                    onRowDoubleClicked={(e) => handleOpenModal(e.data)}
+                    // onRowDoubleClicked={(e) => console.log('aa', e.data)}
+                    />
+            </div>
+        </div>
+
+      {/* <table className="min-w-full bg-white border border-gray-300">
         <thead className='bg-gray'>
           <tr>
             <th className="py-2 px-4 border-b"></th>
@@ -159,7 +209,7 @@ function retailItemList() {
 
         </tbody>
 
-      </table>
+      </table> */}
       <div>
         <Modal
           open={openModal}
